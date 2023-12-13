@@ -1,0 +1,8 @@
+<configuration>
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>niit</value>
+    </property>
+
+
+</configuration>
