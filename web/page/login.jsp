@@ -29,7 +29,7 @@
       <input type="text" class="form_input" placeholder="姓名">
       <input type="text" class="form_input" placeholder="账号">
       <input type="text" class="form_input" placeholder="密码">
-      <button class="form_button button submit">登录</button>
+      <button class="form_button button submit">注册</button>
     </form>
   </div>
 
