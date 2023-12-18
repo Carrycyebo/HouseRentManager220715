@@ -10,14 +10,13 @@ import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.util.Bytes;
 import util.HbaseUtil;
 
-public class RegistDao {
+public class LoginDao {
     //用户注册
-    public void addUser(String name ,String uname,String pwd){
+    public void queryUser(String name ,String pwd){
         try {
             Table table = HbaseUtil.getTable("user");
             Put put1 = new Put(Bytes.toBytes(name));
             put1.addColumn(Bytes.toBytes("info"),Bytes.toBytes("name"),Bytes.toBytes(name));
-            put1.addColumn(Bytes.toBytes("info"),Bytes.toBytes("uname"),Bytes.toBytes(uname));
             put1.addColumn(Bytes.toBytes("info"),Bytes.toBytes("pwd"),Bytes.toBytes(pwd));
             table.put(put1);
             table.close();

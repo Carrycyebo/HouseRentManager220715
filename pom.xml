@@ -43,8 +43,11 @@
             <artifactId>fastjson2</artifactId>
             <version>2.0.23</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-security</artifactId>
+            <version>9.4.20.v20190813</version>
+        </dependency>
 
 
     </dependencies>
