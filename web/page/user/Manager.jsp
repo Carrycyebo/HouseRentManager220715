@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signin Admin Dashboard</title>
-    <link rel="stylesheet" href="static/css/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>用户中心</title>
+    <link rel="stylesheet" href="../static/css/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
             <div class="brand">
                 <h2>
                     <span class="lab la-staylinked"></span>
-                    Vase
+                    财大房屋租赁系统
                 </h2>
             </div>
 
@@ -29,8 +29,8 @@
                 </div>
                 <div class="avartar-info">
                     <div class="avartar-text">
-                        <h4>Typh AdminSir</h4>
-                        <small>135-6841-6239</small>
+                        <h4>Typh AdminSir</h4><%-- 此处接受用户名 --%>
+                        <small>135-6841-6239</small><%-- 此处接受用户账号 --%>
                     </div>
                     <span class="las la-angle-double-down"></span>
                 </div>
@@ -38,21 +38,21 @@
             <div class="sidebar-menu">
                 <ul>
                     <li>
-                        <a href="https://carrycyebo.top" class="active">
+                        <a href="" class="active">
                             <span class="las la-adjust"></span>
-                            <span>Dashboard</span>
+                            <span>主页</span>
                         </a>
                     </li>
                     <li>
                         <a href="">
                             <span class="las la-video"></span>
-                            <span>Videos</span>
+                            <span>个人信息</span>
                         </a>
                     </li>
                     <li>
                         <a href="">
                             <span class="las la-chart-bar"></span>
-                            <span>Analytics</span>
+                            <span>房屋租赁</span>
                         </a>
                     </li>
                     <li>
@@ -102,14 +102,14 @@
         </header>
         <main>
             <section>
-                <h3 class="section-head">Overview</h3>
+                <h3 class="section-head">总览</h3>
                 <div class="analytics">
                     <div class="analytic">
                         <div class="analytic-icon">
                             <span class="las la-eye"></span>
                         </div>
                         <div class="analytic-info">
-                            <h4>Total views</h4>
+                            <h4>总浏览量</h4>
                             <h1>10.3M <small class="text-danger"> 5% </small></h1>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                             <span class="las la-clock"></span>
                         </div>
                         <div class="analytic-info">
-                            <h4>Watch Time(hrs)</h4>
+                            <h4>浏览次数</h4>
                             <h1>1.3K <small class="text-success"> 7% </small></h1>
                         </div>
                     </div>
