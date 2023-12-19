@@ -25,7 +25,7 @@
 
             <div class="sidebar-avartar">
                 <div>
-                    <img src="./source/avatar.png" alt="">
+                    <img src="../static/img/picture.webp" alt="">
                 </div>
                 <div class="avartar-info">
                     <div class="avartar-text">
@@ -45,13 +45,13 @@
                     </li>
                     <li>
                         <a href="">
-                            <span class="las la-video"></span>
+                            <span class="las la-user"></span>
                             <span>个人信息</span>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <span class="las la-chart-bar"></span>
+                            <span class="las la-calendar"></span>
                             <span>房屋租赁</span>
                         </a>
                     </li>
@@ -118,7 +118,7 @@
                             <span class="las la-users"></span>
                         </div>
                         <div class="analytic-info">
-                            <h4>Subscribers</h4>
+                            <h4>用户</h4>
                             <h1>1.3K <small class="text-success"> 15% </small></h1>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                     <div class="revenue-card">
                         <h3 class="section-head">Total Revenue</h3>
                         <div class="rev-content">
-                            <img src="./source/avatar.png" alt="">
+                            <img src="../static/img/picture.webp" alt="">
                             <div class="rev-info">
                                 <h3>Ralph Anderson</h3>
                                 <h1>3.5M <small>Subscribers</small></h1>
