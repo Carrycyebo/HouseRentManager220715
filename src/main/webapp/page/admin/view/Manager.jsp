@@ -1,11 +1,16 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+.<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/page/";
+    request.setAttribute("path", basePath);
+%>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户中心</title>
-    <link rel="stylesheet" href="../static/css/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="${path}static/css/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="${path}static/css/style.css">
 </head>
 
 <body>

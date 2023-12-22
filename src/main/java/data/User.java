@@ -1,13 +1,13 @@
 package data;
 
-public class MyData {
+public class User {
     private String name ;
     private double value ;
 
-    public MyData() {
+    public User() {
     }
 
-    public MyData(String name, double value) {
+    public User(String name, double value) {
         this.name = name;
         this.value = value;
     }

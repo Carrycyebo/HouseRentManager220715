@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 
-@WebServlet("/register")
+@WebServlet("/user/register")
 public class RegisterServlet extends HttpServlet {
     private final RegisterService registerService = new RegisterService();
     @Override

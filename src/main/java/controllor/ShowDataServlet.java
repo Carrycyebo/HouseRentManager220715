@@ -1,7 +1,7 @@
 package controllor;
 
 import com.alibaba.fastjson2.JSONObject;
-import data.MyData;
+import data.User;
 import services.ShowDataService;
 
 import javax.servlet.ServletException;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/show")
+@WebServlet("/user/show")
 public class ShowDataServlet extends HttpServlet {
-    private ShowDataService service = new ShowDataService();
+    private final ShowDataService service = new ShowDataService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("----------");
-        List<MyData> data = service.seleteData();
+        List<User> data = service.selectData();
         String jsonData = JSONObject.toJSONString(data);
         System.out.println(jsonData);
         resp.getWriter().write(jsonData);

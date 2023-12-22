@@ -7,19 +7,27 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet("/admin/login")
 public class LoginServlet extends HttpServlet {
     private final LoginService loginService = new LoginService();
     @Override
-    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String password = req.getParameter("password");
+    public void service(ServletRequest req, ServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("adminName");
+        String password = req.getParameter("adminPasswd");
 
-        System.out.println(name);
-        System.out.println(password);
-        loginService.queryUser(name,password);
+        int status = loginService.queryUser(name,password);
+        if(status == 0){
+            req.getRequestDispatcher("/page/admin/view/Manager.jsp").forward(req, resp);
+        } else if (status == 1) {
+            req.setAttribute("tip", "账号不存在！");
+            req.getRequestDispatcher("/page/admin/adminLogin.jsp").forward(req, resp);
+        }else {
+            req.setAttribute("tip", "密码不正确！");
+            req.getRequestDispatcher("/page/admin/adminLogin.jsp").forward(req, resp);
+        }
 
     }
 }

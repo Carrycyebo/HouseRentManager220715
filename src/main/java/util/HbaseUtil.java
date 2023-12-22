@@ -13,7 +13,6 @@ public class HbaseUtil {
     static Configuration conf = HBaseConfiguration.create();
     static Connection conn = null;
     static Table table = null ;
-
     static {
         try {
             conn = ConnectionFactory.createConnection(conf);
@@ -21,10 +20,12 @@ public class HbaseUtil {
             throw new RuntimeException(e);
         }
     }
+
+
     //获取Table对象
-    public static Table getTable(String tablename){
+    public static Table getTable(String tableName){
         try {
-            TableName user = TableName.valueOf(tablename);
+            TableName user = TableName.valueOf(tableName);
             if (conn!= null){
                 table = conn.getTable(user);
             }
