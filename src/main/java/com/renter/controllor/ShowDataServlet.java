@@ -18,10 +18,13 @@ public class ShowDataServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("123123123213");
-        List<Data> data = service.selectData();
-        String jsonData = JSONObject.toJSONString(data);
-        System.out.println(jsonData);
-        resp.getWriter().write(jsonData);
+        List<Data> data1 = service.selectData1();
+        String jsonData1 = JSONObject.toJSONString(data1);
+        resp.getWriter().write(jsonData1);
+
+        List<Data> data2 = service.selectData2();
+        String jsonData2 = JSONObject.toJSONString(data1);
+        resp.getWriter().write(jsonData2);
     }
 
     @Override

@@ -7,7 +7,12 @@ import java.util.List;
 
 public class ShowDataService {
     private final ShowData data = new ShowData();
-    public List<Data> selectData(){
+    public List<Data> selectData1(){
         return  data.selectData1();
     }
+
+    public List<Data> selectData2(){
+        return data.selectData2();
+    }
+
 }

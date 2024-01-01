@@ -16,24 +16,46 @@ import java.util.List;
 public class ShowData {
     //查所有result2表
     public List<Data> selectData1(){
-        List<Data> list = new ArrayList<Data>();
-        Table result1 = HbaseUtil.getTable("HouseManager:rent_count1");
+        List<Data> list1 = new ArrayList<Data>();
+        Table result1 = HbaseUtil.getTable("1");
         try {
                 ResultScanner scanner = result1.getScanner(new Scan());
                 for(Result result : scanner){
                     while (result.advance()){
                         Cell cell = result.current();
-
+                        //小区
                         String row = Bytes.toString(CellUtil.cloneRow(cell));
-
+                        //每个小区房屋个数
                         double value = Double.parseDouble(Bytes.toString(CellUtil.cloneValue(cell)));
                         Data data =  new Data(row, value);
-                        list.add(data);
+                        list1.add(data);
                     }
                 }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return  list;
+        return  list1;
+    }
+
+    public List<Data> selectData2(){
+        List<Data> list2 = new ArrayList<Data>();
+        Table result1 = HbaseUtil.getTable("2");
+        try {
+            ResultScanner scanner = result1.getScanner(new Scan());
+            for(Result result : scanner){
+                while (result.advance()){
+                    Cell cell = result.current();
+                    //小区
+                    String name = Bytes.toString(CellUtil.cloneRow(cell));
+                    //每个小区房屋个数
+                    double value = Double.parseDouble(Bytes.toString(CellUtil.cloneValue(cell)));
+                    Data data =  new Data(name, value);
+                    list2.add(data);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return  list2;
     }
 }
