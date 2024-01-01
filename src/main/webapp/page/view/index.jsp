@@ -5,12 +5,12 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/page/view/";
     request.setAttribute("path", basePath);
 %>
-<%
+<%--<%
     User loggedInAdmin = (User) session.getAttribute("loggedInUser");
     if (loggedInAdmin == null) {
         response.sendRedirect("/page/user/login.jsp");
     }
-%>
+%>--%>
 <html lang="en">
 
 <head>

@@ -5,12 +5,12 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/page/view/";
     request.setAttribute("path", basePath);
 %>
-<%
-    Admin loggedInAdmin = (Admin) session.getAttribute("loggedInAdmin");
-    if (loggedInAdmin == null) {
-        response.sendRedirect("/page/admin/login.jsp");
-    }
-%>
+<%--<%--%>
+<%--    Admin loggedInAdmin = (Admin) session.getAttribute("loggedInAdmin");--%>
+<%--    if (loggedInAdmin == null) {--%>
+<%--        response.sendRedirect("/page/admin/login.jsp");--%>
+<%--    }--%>
+<%--%>--%>
 <html lang="en">
 
 <head>
@@ -107,7 +107,8 @@
                 </li>
             </ul>
         </nav>
-        <div class="col-lg-6 grid-margin stretch-card">
+        <div class="h-75 col-lg-6 grid-margin stretch-card custom-parent">
+            <div class="shadow p-3 mb-5 bg-white rounded">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">成员信息</h4>
@@ -181,6 +182,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

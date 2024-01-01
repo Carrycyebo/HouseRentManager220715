@@ -17,7 +17,7 @@ public class ShowDataServlet extends HttpServlet {
     private final ShowDataService service = new ShowDataService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("----------");
+        System.out.println("123123123213");
         List<Data> data = service.selectData();
         String jsonData = JSONObject.toJSONString(data);
         System.out.println(jsonData);

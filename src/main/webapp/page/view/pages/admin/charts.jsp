@@ -14,6 +14,11 @@
 <html lang="en">
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+            crossorigin="anonymous"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -107,8 +112,44 @@
                 </li>
             </ul>
         </nav>
+        <div style="height: 1000px;width: 1400px;" id = "show1"></div>
     </div>
 </div>
+<script type="text/javascript">
+    var show1 = echarts.init(document.getElementById("show1"));
+    var option = null ;
+    option = {
+        title: {
+            text: '123'
+        },
+        xAxis: {
+            data: ['0', '1', '2', '3', '4', '5', '6' , '7','8']
+        },
+        yAxis: {},
+        series: [{
+            type: 'bar',
+            data: [],
+        }]
+    };
+    show1.setOption(option);
+    $.ajax({
+        url: "/user/show",
+        type: "post",
+        dataType:"json",
+        success:function () {
+            show1.setOption(option={
+                series:[{
+                    data : [20, 30, 40, 50, 60, 70, 80, 90, 100],
+                }]
+            });
+        }
+    })
+
+
+    window.addEventListener('resize', function (){
+        show1.resize();
+    })
+</script>
 <!-- partial -->
 
 <!-- container-scroller -->

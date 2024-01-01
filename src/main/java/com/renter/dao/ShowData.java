@@ -15,25 +15,25 @@ import java.util.List;
 
 public class ShowData {
     //查所有result2表
-    public List<Data> selectData(){
+    public List<Data> selectData1(){
         List<Data> list = new ArrayList<Data>();
-        Table result2 = HbaseUtil.getTable("result2");
+        Table result1 = HbaseUtil.getTable("...");
         try {
-            ResultScanner scanner = result2.getScanner(new Scan());
-            for (Result result : scanner) {
-                while (result.advance()){
-                    Cell cell = result.current();
-                    //公司名称
-                    String cname = Bytes.toString(CellUtil.cloneRow(cell));
-                    //工资
-                    double salary = Double.parseDouble(Bytes.toString(CellUtil.cloneValue(cell)));
-                    Data myData = new Data(cname, salary);
-                    list.add(myData);
+                ResultScanner scanner = result1.getScanner(new Scan());
+                for(Result result : scanner){
+                    while (result.advance()){
+                        Cell cell = result.current();
+                        //小区
+                        String row = Bytes.toString(CellUtil.cloneRow(cell));
+                        //每个小区房屋个数
+                        double value = Double.parseDouble(Bytes.toString(CellUtil.cloneValue(cell)));
+                        Data data =  new Data(row, value);
+                        list.add(data);
+                    }
                 }
-            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return  list ;
+        return  list;
     }
 }
