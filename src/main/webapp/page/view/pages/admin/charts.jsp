@@ -5,12 +5,12 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/page/view/";
     request.setAttribute("path", basePath);
 %>
-<%--<%--%>
-<%--    Admin loggedInAdmin = (Admin) session.getAttribute("loggedInAdmin");--%>
-<%--    if (loggedInAdmin == null) {--%>
-<%--        response.sendRedirect("/page/admin/login.jsp");--%>
-<%--    }--%>
-<%--%>--%>
+<%
+    Admin loggedInAdmin = (Admin) session.getAttribute("loggedInAdmin");
+    if (loggedInAdmin == null) {
+        response.sendRedirect("/page/admin/login.jsp");
+    }
+%>
 <html lang="en">
 
 <head>
@@ -112,8 +112,7 @@
                 </li>
             </ul>
         </nav>
-        <div style="height: 600px;width: 600px;" id = "show1"></div>
-        <div style="height: 600px;width: 800px;" id = "show2"></div>
+        <div style="height: 1000px;width: 1400px;" id = "show1"></div>
     </div>
 </div>
 <script type="text/javascript">
@@ -121,10 +120,10 @@
     var option = null ;
     option = {
         title: {
-            text: '各小区房屋数量统计图'
+            text: '123'
         },
         xAxis: {
-            data: ['00', '01', '02', '03', '04']
+            data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49']
         },
         yAxis: {},
         series: [{
@@ -137,10 +136,10 @@
         url: "../../../../user/show",
         type: "post",
         dataType:"json",
-        success:function (list1) {
+        success:function (list) {
             show1.setOption(option={
                 series:[{
-                    data : list1,
+                    data : list,
                 }]
             });
         }
@@ -149,46 +148,6 @@
 
     window.addEventListener('resize', function (){
         show1.resize();
-    })
-</script>
-
-<script type="text/javascript">
-    var show2 = echarts.init(document.getElementById("show2"));
-    var option = null ;
-    option = {
-        color: ['#1F78B4', '#33A02C', '#FB9A99', '#E31A1C'],
-        title: {
-            text: '房屋租赁价格区间',
-            bottom: 10,
-            left: 'center',
-            textStyle: {
-                fontSize: 16
-            }
-        },
-        series: [{
-            type: 'pie',
-            radius: ['28%', '66%'],
-            center: ['50%', '45%'],
-            label: {
-                fontSize: 16,
-                formatter: '{b} {d}%',
-            },
-            data: [],
-        }]
-    };
-    show2.setOption(option);
-    $.ajax({
-        url:"../../../../user/show",
-        type:"post",
-        dataType:"json",
-        success:function (list2){
-            show2.setOption(option={
-                series:[{
-                    data : list2,
-                }]
-            })
-        }
-
     })
 </script>
 <!-- partial -->

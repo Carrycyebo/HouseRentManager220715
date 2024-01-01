@@ -60,7 +60,10 @@ public class GetOrderDao {
                 }
                 // 一行数据遍历结束后，创建一个 Order 对象，并将其加入列表中
                 order = new Order(rowKey, order_id, house_id, price, startint_time, end_time, renting_status);
-                list.add(order);
+                if(order.getOrder_id() != null){
+                    list.add(order);
+                }
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
