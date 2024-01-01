@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
             req.setAttribute("tipAdmin", "该管理账户已存在！");
             req.getRequestDispatcher("/page/view/pages/admin/register.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect("/page/view/pages/success.jsp");
+            resp.sendRedirect("/page/view/pages/status/success.jsp");
         }
 
     }

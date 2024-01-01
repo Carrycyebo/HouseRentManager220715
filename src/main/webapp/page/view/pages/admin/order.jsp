@@ -50,11 +50,14 @@
                 <li class="nav-item nav-search d-none d-lg-block w-100">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
-                </span>
+                            <span class="input-group-text" id="search">
+                               <i class="mdi mdi-magnify"></i>
+                            </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+                        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search" id="searchBox">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -192,6 +195,8 @@
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                                                             <button type="submit" class="btn btn-primary">保存修改</button>
                                                         </div>
+                                                        <input type="hidden" name="orderId" value="${order.order_id}">
+                                                        <input type="hidden" name="rowKey" value="${order.row}">
                                                     </form>
                                                 </div>
                                             </div>
@@ -288,6 +293,29 @@
         <!-- End custom js for this page-->
 
         <script src="${path}js/jquery.cookie.js" type="text/javascript"></script>
+<script>
+    let searchButton = document.getElementById("searchButton");
+    let searchBox = document.getElementById("searchBox");
+
+    searchButton.addEventListener("click", function() {
+        let input = searchBox.value;
+        let regex = /^\d{8}$/; // 正则表达式，匹配8位数字
+
+        if (regex.test(input)) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/page/view/pages/admin/query", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send("searchQuery=" + encodeURIComponent(input));
+        } else {
+            alert("请输入8位数字！");
+        }
+    });
+</script>
 
 
 </body>

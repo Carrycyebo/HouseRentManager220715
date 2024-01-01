@@ -23,6 +23,7 @@ public class GetOrderDao {
             ResultScanner scanner = table.getScanner(new Scan());
             Order order = null;
             for (Result result : scanner) {
+                String rowKey = Bytes.toString(result.getRow());
                 String order_id = null;
                 String house_id = null;
                 String price = null;
@@ -58,7 +59,7 @@ public class GetOrderDao {
                     }
                 }
                 // 一行数据遍历结束后，创建一个 Order 对象，并将其加入列表中
-                order = new Order(order_id, house_id, price, startint_time, end_time, renting_status);
+                order = new Order(rowKey, order_id, house_id, price, startint_time, end_time, renting_status);
                 list.add(order);
             }
         } catch (IOException e) {

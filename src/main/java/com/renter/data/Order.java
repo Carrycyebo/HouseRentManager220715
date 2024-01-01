@@ -52,6 +52,15 @@ public class Order {
     public Order() {
     }
 
+    public String getRow() {
+        return row;
+    }
+
+    public void setRow(String row) {
+        this.row = row;
+    }
+
+    private String row;
     private String order_id;
     private String house_id;
     private String price;
@@ -59,7 +68,8 @@ public class Order {
     private String end_time;
     private String renting_status;
 
-    public Order(String order_id, String house_id, String price, String startint_time, String end_time, String renting_status) {
+    public Order(String row, String order_id, String house_id, String price, String startint_time, String end_time, String renting_status) {
+        this.row = row;
         this.order_id = order_id;
         this.house_id = house_id;
         this.price = price;

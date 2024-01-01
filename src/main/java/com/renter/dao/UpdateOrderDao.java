@@ -12,7 +12,8 @@ public class UpdateOrderDao {
     public boolean updateOrder(Order update) {
         Table table = HbaseUtil.getTable("HouseManager:house");
         try {
-            Put put = new Put(Bytes.toBytes(update.getOrder_id()));
+            Put put = new Put(Bytes.toBytes(update.getRow()));
+            put.addColumn(Bytes.toBytes("info"), Bytes.toBytes("order_id"), Bytes.toBytes(update.getOrder_id()));
             put.addColumn(Bytes.toBytes("info"), Bytes.toBytes("house_id"), Bytes.toBytes(update.getHouse_id()));
             put.addColumn(Bytes.toBytes("info"), Bytes.toBytes("price"), Bytes.toBytes(update.getPrice()));
             put.addColumn(Bytes.toBytes("info"), Bytes.toBytes("startint_time"), Bytes.toBytes(update.getStartint_time()));

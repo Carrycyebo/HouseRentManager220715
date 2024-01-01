@@ -31,7 +31,7 @@ public class UserRegisterServlet extends HttpServlet {
                 req.setAttribute("tipUserR", "该邮箱已被注册！");
                 req.getRequestDispatcher("/page/user/login.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect("/page/view/pages/suc.jsp");
+                resp.sendRedirect("/page/view/pages/status/suc.jsp");
             }
         }
 
