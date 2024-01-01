@@ -17,15 +17,21 @@ public class UserRegisterServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String email = req.getParameter("email");
-        String uname = req.getParameter("uname");
-        String password = req.getParameter("password");
+        String email = req.getParameter("userEmail");
+        String uname = req.getParameter("userName");
+        String password = req.getParameter("userPasswd");
+
+
+        System.out.println(email);
+        System.out.println(uname);
+        System.out.println(password);
 
         int status = registerService.addUser(email,uname,password);{
             if (status == 1){
-                req.setAttribute("tipUser", "该管理账户已存在！");
+                req.setAttribute("tipUserR", "该邮箱已被注册！");
+                req.getRequestDispatcher("/page/user/login.jsp").forward(req, resp);
             } else {
-
+                resp.sendRedirect("/page/view/pages/suc.jsp");
             }
         }
 

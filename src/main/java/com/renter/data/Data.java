@@ -1,6 +1,7 @@
 package com.renter.data;
 
-public class Data {
+public class
+Data {
     private String name ;
     private double value ;
 

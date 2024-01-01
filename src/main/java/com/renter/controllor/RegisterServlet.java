@@ -18,13 +18,17 @@ public class RegisterServlet extends HttpServlet {
         String name = req.getParameter("Name");
         String password = req.getParameter("Passwd");
 
+
+
         System.out.println(name);
         System.out.println(password);
+
         int status = registerService.addAdmin(name,password);
         if (status == 1){
             req.setAttribute("tipAdmin", "该管理账户已存在！");
+            req.getRequestDispatcher("/page/view/pages/admin/register.jsp").forward(req, resp);
         } else {
-            req.getRequestDispatcher("/view?action=manager").forward(req, resp);
+            resp.sendRedirect("/page/view/pages/success.jsp");
         }
 
     }

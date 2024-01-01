@@ -15,7 +15,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     private final LoginService loginService = new LoginService();
     @Override
-    public void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void service(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String name = req.getParameter("adminName");
         String password = req.getParameter("adminPasswd");
         System.out.println(name+password);
@@ -28,10 +28,10 @@ public class LoginServlet extends HttpServlet {
             resp.sendRedirect("/page/view/home.jsp");
         } else if (status == 1) {
             req.setAttribute("tip", "账号不存在！");
-            resp.sendRedirect("/page/admin/login.jsp");
+            req.getRequestDispatcher("/page/admin/login.jsp").forward(req, resp);
         }else {
             req.setAttribute("tip", "密码不正确！");
-            resp.sendRedirect("/page/admin/login.jsp");
+            req.getRequestDispatcher("/page/admin/login.jsp").forward(req, resp);
         }
 
     }

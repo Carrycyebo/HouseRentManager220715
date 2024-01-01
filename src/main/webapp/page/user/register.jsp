@@ -1,9 +1,13 @@
-<%@ page import="com.renter.data.Admin" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/page/view/";
     request.setAttribute("path", basePath);
+%>
+<%
+    String path2 = request.getContextPath();
+    String basePath2 = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path2+"/page/user/";
+    request.setAttribute("path2", basePath2);
 %>
 <html lang="en">
 
@@ -31,18 +35,24 @@
             <div class="row w-100 mx-0">
                 <div class="col-lg-4 mx-auto">
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                        <h4>Hello! let's get started</h4>
-                        <h6 class="font-weight-light">Sign in to continue.</h6>
-                        <form action="../../admin/login" method="post"  class="pt-3" onsubmit="return validateForm()">
+                        <h4>New here?</h4>
+                        <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                        <form action="../../user/register" method="post" class="pt-3" onsubmit="return validateR()">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" name="adminName">
+                                <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="userEmail">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="adminPasswd">
+                                <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" name="userName">
                             </div>
-                                <h5 id="tipMessage" style="color: red">${tip}</h5>
-                            <div class="mt-4">
-                                <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="userPasswd">
+                            </div>
+                                 <h5 id="tipMessage" style="color: red">${tipUserR}</h5>
+                            <div class="mt-3">
+                                <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN UP</button>
+                            </div>
+                            <div class="text-center mt-4 font-weight-light">
+                                Already have an account? <a href="${path2}login.jsp" class="text-primary">Login</a>
                             </div>
                         </form>
                     </div>
@@ -61,8 +71,8 @@
 <script src="${path}js/off-canvas.js"></script>
 <script src="${path}js/hoverable-collapse.js"></script>
 <script src="${path}js/template.js"></script>
-<!-- endinject -->
 <script src="${path}js/noNull.js"></script>
+<!-- endinject -->
 </body>
 
 </html>

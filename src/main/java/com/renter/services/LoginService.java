@@ -1,6 +1,8 @@
 package com.renter.services;
 
 import com.renter.dao.LoginDao;
+import com.renter.data.Admin;
+import com.renter.data.User;
 
 public class LoginService {
     private final LoginDao loginDao = new LoginDao();
@@ -23,10 +25,10 @@ public class LoginService {
     }
 
 
-    public int queryUser(String username, String passwd){
+    public int queryUser(String email, String passwd){
         String pwd = null;
 
-        pwd = loginDao.queryAdmin(username);
+        pwd = loginDao.queryUser(email);
 
         if (pwd != null){
             if (pwd.equals(passwd)){
@@ -38,6 +40,10 @@ public class LoginService {
         }else {
             return 1;
         }
+    }
+
+    public User getUser(String email){
+        return loginDao.getUser(email);
     }
 
 

@@ -1,6 +1,8 @@
 package com.renter.controllor;
 
+import com.renter.dao.LoginDao;
 import com.renter.data.Admin;
+import com.renter.data.User;
 import com.renter.services.LoginService;
 
 import javax.servlet.ServletException;
@@ -16,22 +18,22 @@ public class UserLoginServlet extends HttpServlet {
     private final LoginService loginService = new LoginService();
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("adminName");
-        String password = req.getParameter("adminPasswd");
+        String email = req.getParameter("userEmail");
+        String password = req.getParameter("userPasswd");
 
-        int status = loginService.queryUser(name,password);
+        int status = loginService.queryUser(email,password);
         if(status == 0){
-
-            Admin loggedInAdmin = new Admin(name, password);
+            User loggedUser = loginService.getUser(email);
+            System.out.println(loggedUser.getName());
             HttpSession session = req.getSession();
-            session.setAttribute("loggedInUser", loggedInAdmin);
-            req.getRequestDispatcher("/view?action=manager").forward(req, resp);
+            session.setAttribute("loggedInUser", loggedUser);
+            resp.sendRedirect("/page/view/index.jsp");
         } else if (status == 1) {
-            req.setAttribute("tip", "账号不存在！");
-            req.getRequestDispatcher("/page/admin/login.jsp").forward(req, resp);
+            req.setAttribute("tipUserL", "账号不存在！");
+            req.getRequestDispatcher("/page/user/login.jsp").forward(req, resp);
         }else {
-            req.setAttribute("tip", "密码不正确！");
-            req.getRequestDispatcher("/page/admin/login.jsp").forward(req, resp);
+            req.setAttribute("tipUserL", "密码不正确！");
+            req.getRequestDispatcher("/page/user/login.jsp").forward(req, resp);
         }
 
     }

@@ -1,4 +1,4 @@
-<%@ page import="com.renter.data.User" %>
+<%@ page import="com.renter.data.Admin" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -6,14 +6,15 @@
     request.setAttribute("path", basePath);
 %>
 <%
-    User loggedInAdmin = (User) session.getAttribute("loggedInUser");
+    Admin loggedInAdmin = (Admin) session.getAttribute("loggedInAdmin");
     if (loggedInAdmin == null) {
-        response.sendRedirect("/page/user/login.jsp");
+        response.sendRedirect("/page/admin/login.jsp");
     }
 %>
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -57,7 +58,7 @@
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                         <img src="${path}images/faces/face5.jpg" alt="profile"/>
-                        <span class="nav-profile-name">${loggedInUser.name}</span>
+                        <span class="nav-profile-name">${loggedInAdmin.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="../../logout">
@@ -84,29 +85,27 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/admin/order.jsp">
+                    <a class="nav-link" href="${path}pages/admin/order">
                         <i class="mdi mdi-view-headline menu-icon"></i>
-                        <span class="menu-title">租赁</span>
+                        <span class="menu-title">订单管理</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="mdi mdi-circle-outline menu-icon"></i>
-                        <span class="menu-title">${loggedInUser.name}</span>
-                        <i class="menu-arrow"></i>
+                    <a class="nav-link" href="${path}pages/admin/charts.jsp">
+                        <i class="mdi mdi-chart-areaspline menu-icon"></i>
+                        <span class="menu-title">图表</span>
                     </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="${path}pages/ui-features/buttons.jsp">我的订单</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="${path}pages/ui-features/typography.jsp">个人信息</a></li>
-                        </ul>
-                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${path}pages/admin/userManager.jsp">
+                        <i class="mdi mdi-account menu-icon"></i>
+                        <span class="menu-title">用户管理</span>
+                    </a>
                 </li>
             </ul>
         </nav>
     </div>
 </div>
-
         <!-- partial -->
 
         <!-- container-scroller -->

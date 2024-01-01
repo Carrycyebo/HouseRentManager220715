@@ -1,4 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.renter.data.Admin" %>
+<%@ page import="com.renter.data.Order" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -14,6 +17,7 @@
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,13 +64,9 @@
                         <span class="nav-profile-name">${loggedInAdmin.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../logout">
+                        <a class="dropdown-item" href="../../../logout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
-                        </a>
-                        <a class="dropdown-item" href="${path}pages/admin/register.jsp">
-                            <i class=" mdi mdi-account-multiple-plus text-primary"></i>
-                            Add New Admin
                         </a>
                     </div>
                 </li>
@@ -107,6 +107,80 @@
                 </li>
             </ul>
         </nav>
+        <div class="main-panel">
+            <div class="row">
+                <div class="col-md-12 stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-title">Recent Purchases</p>
+                            <div class="table-responsive">
+                                <table id="recent-purchases-listing" class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>订单编号</th>
+                                        <th>房屋编号</th>
+                                        <th>租价</th>
+                                        <th>订单开始时间</th>
+                                        <th>订单结束时间</th>
+                                        <th>租赁状态</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${currentOrders}" var="order">
+                                        <tr>
+                                            <td>${order.order_id}</td>
+                                            <td>${order.house_id}</td>
+                                            <td>${order.price}</td>
+                                            <td>${order.startint_time}</td>
+                                            <td>${order.end_time}</td>
+                                            <td>${order.renting_status}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <p>当前页：${currentPage}</p>
+                                    <p>每页显示：${pageSize}</p>
+                                    <p>总页数：${totalPage}</p>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <c:choose>
+                                            <c:when test="${currentPage > 1}">
+                                                <li><a href="${path}pages/admin/order?currentPage=${currentPage - 1}&pageSize=${pageSize}">上一页</a></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li>上一页</li>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <c:forEach begin="1" end="${totalPage}" varStatus="status">
+                                            <c:choose>
+                                                <c:when test="${currentPage == status.index}">
+                                                    <li><strong>${status.index}</strong></li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li><a href="${path}pages/admin/order?currentPage=${status.index}&pageSize=${pageSize}">${status.index}</a></li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+
+                                        <c:choose>
+                                            <c:when test="${currentPage < totalPage}">
+                                                <li><a href="${path}pages/admin/order?currentPage=${currentPage + 1}&pageSize=${pageSize}">下一页</a></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li>下一页</li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
         <!-- partial -->

@@ -55,4 +55,7 @@ public class User {
         this.passwd = passwd;
         this.email = email;
     }
+    public User(){
+
+    }
 }

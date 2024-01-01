@@ -16,8 +16,6 @@ public class RegistDao {
             Put put1 = new Put(Bytes.toBytes(name));
             put1.addColumn(Bytes.toBytes("info"),Bytes.toBytes("passwd"),Bytes.toBytes(passwd));
             table.put(put1);
-            table.close();
-            HbaseUtil.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -30,8 +28,6 @@ public class RegistDao {
             put2.addColumn(Bytes.toBytes("info"),Bytes.toBytes("uname"),Bytes.toBytes(uname));
             put2.addColumn(Bytes.toBytes("info"),Bytes.toBytes("passwd"),Bytes.toBytes(passwd));
             table.put(put2);
-            table.close();
-            HbaseUtil.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -50,7 +46,7 @@ public class RegistDao {
     }
 
     public boolean queryName(String name) {
-        Table table = HbaseUtil.getTable("HouseManager:user");
+        Table table = HbaseUtil.getTable("HouseManager:admin");
         boolean exists;
         Get get = new Get(Bytes.toBytes(name));
         try {
