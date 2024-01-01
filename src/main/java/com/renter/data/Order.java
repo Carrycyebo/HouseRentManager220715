@@ -49,6 +49,9 @@ public class Order {
         this.renting_status = renting_status;
     }
 
+    public Order() {
+    }
+
     private String order_id;
     private String house_id;
     private String price;

@@ -21,7 +21,7 @@ public class GetOrderServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int currentPage = 1;
-        int pageSize = 15;
+        int pageSize = 10;
 
         String currentPageParam = req.getParameter("currentPage");
         String pageSizeParam = req.getParameter("pageSize");

@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetOrderDao {
-    public List<Order> getOrder(){
-        List<Order> list = new ArrayList<Order>();
+    public List<Order> getOrder() {
+        List<Order> list = new ArrayList<>();
         Table table = HbaseUtil.getTable("HouseManager:house");
-
         try {
             ResultScanner scanner = table.getScanner(new Scan());
+            Order order = null;
             for (Result result : scanner) {
                 String order_id = null;
                 String house_id = null;
@@ -29,7 +29,7 @@ public class GetOrderDao {
                 String startint_time = null;
                 String end_time = null;
                 String renting_status = null;
-                while (result.advance()){
+                while (result.advance()) {
                     Cell cell = result.current();
                     byte[] family = CellUtil.cloneFamily(cell);
                     byte[] qualifier = CellUtil.cloneQualifier(cell);
@@ -56,9 +56,10 @@ public class GetOrderDao {
                             renting_status = Bytes.toString(value);
                             break;
                     }
-                    Order order = new Order(order_id, house_id, price, startint_time, end_time, renting_status);
-                    list.add(order);
                 }
+                // 一行数据遍历结束后，创建一个 Order 对象，并将其加入列表中
+                order = new Order(order_id, house_id, price, startint_time, end_time, renting_status);
+                list.add(order);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
