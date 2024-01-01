@@ -112,7 +112,8 @@
                 </li>
             </ul>
         </nav>
-        <div style="height: 1000px;width: 1400px;" id = "show1"></div>
+        <div style="height: 700px;width: 800px;" id = "show1"></div>
+        <div style="height: 800px;width: 800px;" id = "show2"></div>
     </div>
 </div>
 <script type="text/javascript">
@@ -144,10 +145,51 @@
             });
         }
     })
+</script>
+
+
+<script type="text/javascript">
+    var show2 = echarts.init(document.getElementById("show2"));
+    var option = null ;
+    option = {
+        color: ['#1F78B4','#33A02C', '#FB9A99', '#E31A1C'],
+        title: {
+            text: '可租赁房屋价格统计图',
+            bottom: 10,
+            left: 'center',
+            textStyle: {
+                fontSize: 16
+            }
+        },
+        series: [{
+            type: 'pie',
+            radius: ['28%', '66%'],
+            center: ['50%', '45%'],
+            label: {
+                fontSize: 16,
+                formatter: '{b} {d}%',
+            },
+            data: [],
+        }]
+    };
+    show2.setOption(option);
+    $.ajax({
+        url: "../../../../user/show",
+        type: "post",
+        dataType:"json",
+        success:function (list2) {
+            show1.setOption(option={
+                series:[{
+                    data : list2,
+                }]
+            });
+        }
+    })
 
 
     window.addEventListener('resize', function (){
         show1.resize();
+        show2.resize();
     })
 </script>
 <!-- partial -->
