@@ -107,8 +107,84 @@
                 </li>
             </ul>
         </nav>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">成员信息</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>成员</th>
+                                <th>中文名</th>
+                                <th>英文名</th>
+                                <th>负责模块</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="../view/images/ZYB.jpg" alt="...">
+                                </td>
+                                <td>赵艺博</td>
+                                <td>Hunter</td>
+                                <td>123465</td>
+                                <td><label class="badge badge-danger">Pending</label></td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="../view/images/me.jpg" alt="...">
+                                </td>
+                                <td>陈子豪</td>
+                                <td>Luka</td>
+                                <td>123123</td>
+                                <td><label class="badge badge-warning">In progress</label></td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="../view/images/WJY.jpg" alt="...">
+                                </td>
+                                <td>王俊尧</td>
+                                <td>123456</td>
+                                <td>132456</td>
+                                <td><label class="badge badge-info">Fixed</label></td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="../view/images/LXM.jpg" alt="...">
+                                </td>
+                                <td>李晓明</td>
+                                <td>5213214</td>
+                                <td>2131</td>
+                                <td><label class="badge badge-success">Completed</label></td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="../view/images/LZX.jpg" alt="...">
+                                </td>
+                                <td>陆智翔</td>
+                                <td>53275535</td>
+                                <td>20 May 2017</td>
+                                <td><label class="badge badge-warning">In progress</label></td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="../view/images/WCY.jpg" alt="...">
+                                </td>
+                                <td>王晨伊</td>
+                                <td>53275535</td>
+                                <td>20 May 2017</td>
+                                <td><label class="badge badge-warning">In progress</label></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
         <!-- partial -->
 
         <!-- container-scroller -->
