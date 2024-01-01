@@ -55,9 +55,6 @@
                             </span>
                         </div>
                         <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search" id="searchBox">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button>
-                        </div>
                     </div>
                 </li>
             </ul>
@@ -119,6 +116,38 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-title">Recent Purchases</p>
+
+                            <div>
+                                <button type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#query">
+                                    查询订单
+                                </button>
+                            </div>
+                            <div class="modal fade" id="query" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelQuery" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="">查询订单</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="../../../../page/view/pages/admin/query" method="post" id="modifyOrderForm">
+                                                <div class="form-group">
+                                                    <label for="order_id">订单编号</label>
+                                                    <input type="text" class="form-control" id="order_id" name="searchQuery" required>
+                                                    <small class="form-text text-muted">输入要查询的订单编号</small>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                                    <button type="submit" class="btn btn-primary">查询</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="table-responsive">
                                 <table id="recent-purchases-listing" class="table">
                                     <thead>
@@ -142,7 +171,7 @@
                                             <td>${order.end_time}</td>
                                             <td>${order.renting_status}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal${order.order_id}">
+                                                <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#exampleModal${order.order_id}">
                                                     修改订单
                                                 </button>
                                             </td>
@@ -151,7 +180,6 @@
                                     </tbody>
                                 </table>
                                 <c:forEach items="${currentOrders}" var="order">
-
                                     <div class="modal fade" id="exampleModal${order.order_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -256,7 +284,7 @@
                                         <input type="hidden" name="pageSize" value="${pageSize}" />
                                         <input type="number" class="form-control" name="currentPage" placeholder="输入页码" min="1" max="${totalPage}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">跳转</button>
+                                    <button type="submit" class="btn btn-inverse-primary btn-fw">跳转</button>
                                 </form>
                             </div>
                         </div>
@@ -293,29 +321,6 @@
         <!-- End custom js for this page-->
 
         <script src="${path}js/jquery.cookie.js" type="text/javascript"></script>
-<script>
-    let searchButton = document.getElementById("searchButton");
-    let searchBox = document.getElementById("searchBox");
-
-    searchButton.addEventListener("click", function() {
-        let input = searchBox.value;
-        let regex = /^\d{8}$/; // 正则表达式，匹配8位数字
-
-        if (regex.test(input)) {
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "/page/view/pages/admin/query", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log(xhr.responseText);
-                }
-            };
-            xhr.send("searchQuery=" + encodeURIComponent(input));
-        } else {
-            alert("请输入8位数字！");
-        }
-    });
-</script>
 
 
 </body>

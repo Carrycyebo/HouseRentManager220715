@@ -4,6 +4,6 @@
     <title>$Title$</title>
 </head>
 <body>
-    <script>window.location.href="page/admin/login.jsp"</script>
+    <script>window.location.href="page/user/login.jsp"</script>
 </body>
 </html>

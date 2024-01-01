@@ -1,7 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.renter.data.Admin" %>
-<%@ page import="com.renter.data.Order" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.renter.data.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -9,15 +6,14 @@
     request.setAttribute("path", basePath);
 %>
 <%
-    Admin loggedInAdmin = (Admin) session.getAttribute("loggedInAdmin");
+    User loggedInAdmin = (User) session.getAttribute("loggedInUser");
     if (loggedInAdmin == null) {
-        response.sendRedirect("/page/admin/login.jsp");
+        response.sendRedirect("/page/user/login.jsp");
     }
 %>
 <html lang="en">
 
 <head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +21,6 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="${path}vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -50,11 +45,11 @@
                 <li class="nav-item nav-search d-none d-lg-block w-100">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="search">
-                               <i class="mdi mdi-magnify"></i>
-                            </span>
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search" id="searchBox">
+                        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
                     </div>
                 </li>
             </ul>
@@ -62,10 +57,10 @@
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                         <img src="${path}images/faces/face5.jpg" alt="profile"/>
-                        <span class="nav-profile-name">${loggedInAdmin.name}</span>
+                        <span class="nav-profile-name">${loggedInUser.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../../logout">
+                        <a class="dropdown-item" href="../../logout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
@@ -83,28 +78,29 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}home.jsp">
+                    <a class="nav-link" href="${path}index.jsp">
                         <i class="mdi mdi-home menu-icon"></i>
                         <span class="menu-title">主页</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/admin/order">
+                    <a class="nav-link" href="${path}pages/user/rentManager.jsp">
                         <i class="mdi mdi-view-headline menu-icon"></i>
-                        <span class="menu-title">订单管理</span>
+                        <span class="menu-title">租赁</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/admin/charts.jsp">
-                        <i class="mdi mdi-chart-areaspline menu-icon"></i>
-                        <span class="menu-title">图表</span>
+                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="mdi mdi-circle-outline menu-icon"></i>
+                        <span class="menu-title">${loggedInUser.name}</span>
+                        <i class="menu-arrow"></i>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/admin/userList">
-                        <i class="mdi mdi-account menu-icon"></i>
-                        <span class="menu-title">用户管理</span>
-                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder.jsp">我的订单</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/personInfo.jsp">个人信息</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -117,16 +113,16 @@
                         <div class="card-body">
                             <p class="card-title">Recent Purchases</p>
 
-                            <%--<div>
-                                <button type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#search_user">
-                                    查询用户
+                            <div>
+                                <button type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#query">
+                                    查询订单
                                 </button>
                             </div>
-                            <div class="modal fade" id="search_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelQuery" aria-hidden="true">
+                            <div class="modal fade" id="query" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelQuery" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="">查询用户</h5>
+                                            <h5 class="modal-title" id="">查询订单</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -134,9 +130,9 @@
                                         <div class="modal-body">
                                             <form action="../../../../page/view/pages/admin/query" method="post" id="modifyOrderForm">
                                                 <div class="form-group">
-                                                    <label for="email">邮箱</label>
-                                                    <input type="text" class="form-control" id="email" name="searchQuery" required>
-                                                    <small class="form-text text-muted">输入要查询的用户的邮箱</small>
+                                                    <label for="order_id">订单编号</label>
+                                                    <input type="text" class="form-control" id="order_id" name="searchQuery" required>
+                                                    <small class="form-text text-muted">输入要查询的订单编号</small>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
@@ -146,80 +142,85 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>--%>
+                            </div>
 
                             <div class="table-responsive">
                                 <table id="recent-purchases-listing" class="table">
                                     <thead>
                                     <tr>
-                                        <th>邮箱</th>
-                                        <th>用户名</th>
-                                        <th>密码</th>
-                                        <th>电话号</th>
-                                        <th>钱包</th>
-                                        <%--<th>他的订单</th>--%>
-                                        <th>修改用户信息</th>
+                                        <th>订单编号</th>
+                                        <th>房屋编号</th>
+                                        <th>租价</th>
+                                        <th>订单开始时间</th>
+                                        <th>订单结束时间</th>
+                                        <th>租赁状态</th>
+                                        <th>修改订单</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${currentUsers}" var="user">
+                                    <c:forEach items="${currentOrders}" var="order">
                                         <tr>
-                                            <td>${user.email}</td>
-                                            <td>${user.name}</td>
-                                            <td>${user.passwd}</td>
-                                            <td>${user.phone}</td>
-                                            <td>${user.money}</td>
-                                            <%--<td>
-                                                <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#quaryOrder">
-                                                    查看订单
-                                                </button>
-                                            </td>--%>
+                                            <td>${order.order_id}</td>
+                                            <td>${order.house_id}</td>
+                                            <td>${order.price}</td>
+                                            <td>${order.startint_time}</td>
+                                            <td>${order.end_time}</td>
+                                            <td>${order.renting_status}</td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#updateUser${user.email}">
-                                                    修改用户信息
+                                                <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#exampleModal${order.order_id}">
+                                                    修改订单
                                                 </button>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                                <c:forEach items="${currentUsers}" var="user">
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="updateUser${user.email}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                                <c:forEach items="${currentOrders}" var="order">
+                                    <div class="modal fade" id="exampleModal${order.order_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="updateModalLabel">修改用户信息 - ${user.name}</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">修改订单 - ${order.order_id}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="" method="post">
-                                                        <%--<div class="form-group">
-                                                            <label for="emailInput">邮箱</label>
-                                                            <input type="email" class="form-control" id="emailInput" name="email" required>
-                                                            <small class="form-text text-muted">请输入新的邮箱，必填项</small>
+                                                    <form action="../../../../page/view/pages/admin/ModifyOrderSubmit" method="post" id="modifyOrderForm${order.order_id}">
+                                                        <div class="form-group">
+                                                            <label for="houseIdInput">房屋编号</label>
+                                                            <input type="text" class="form-control" id="houseIdInput" name="houseId" value="${order.house_id}" required>
+                                                            <small class="form-text text-muted">请输入新的房屋编号，必填项</small>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="nameInput">用户名</label>
-                                                            <input type="text" class="form-control" id="nameInput" name="name" required>
-                                                            <small class="form-text text-muted">请输入新的用户名，必填项</small>
+                                                            <label for="priceInput">租价</label>
+                                                            <input type="number" class="form-control" id="priceInput" name="price" value="${order.price}" required>
+                                                            <small class="form-text text-muted">请输入租金，必填项</small>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="passwordInput">密码</label>
-                                                            <input type="password" class="form-control" id="passwordInput" name="password" required>
-                                                            <small class="form-text text-muted">请输入新的密码，必填项</small>
+                                                            <label for="startInput">订单开始时间</label>
+                                                            <input type="date" class="form-control" id="startInput" name="startTime" value="${order.startint_time}" required>
+                                                            <small class="form-text text-muted">请输入订单开始时间，必填项</small>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="phoneInput">电话号</label>
-                                                            <input type="text" class="form-control" id="phoneInput" name="phone" required>
-                                                            <small class="form-text text-muted">请输入新的电话号，必填项</small>
-                                                        </div>--%>
+                                                            <label for="endInput">订单结束时间</label>
+                                                            <input type="date" class="form-control" id="endInput" name="endTime" value="${order.end_time}" required>
+                                                            <small class="form-text text-muted">请输入订单结束时间，必填项</small>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="statusInput">租赁状态</label>
+                                                            <select class="form-control" id="statusInput" name="status" required>
+                                                                <option value="Y" >Y</option>
+                                                                <option value="N" >N</option>
+                                                            </select>
+                                                            <small class="form-text text-muted">请选择租赁状态，必填项</small>
+                                                        </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                                                             <button type="submit" class="btn btn-primary">保存修改</button>
                                                         </div>
+                                                        <input type="hidden" name="orderId" value="${order.order_id}">
+                                                        <input type="hidden" name="rowKey" value="${order.row}">
                                                     </form>
                                                 </div>
                                             </div>
@@ -289,6 +290,7 @@
         </div>
     </div>
 </div>
+
 <!-- partial -->
 
 <!-- container-scroller -->
@@ -311,12 +313,9 @@
 <script src="${path}js/data-table.js"></script>
 <script src="${path}js/jquery.dataTables.js"></script>
 <script src="${path}js/dataTables.bootstrap4.js"></script>
-<script src="${path}js/jquery%20-3.6.1/jquery-3.6.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
 <!-- End custom js for this page-->
 
 <script src="${path}js/jquery.cookie.js" type="text/javascript"></script>
-
 </body>
 
 </html>
