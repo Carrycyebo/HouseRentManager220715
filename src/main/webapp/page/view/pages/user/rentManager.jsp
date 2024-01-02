@@ -20,7 +20,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>租赁</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
@@ -64,7 +64,7 @@
                         <span class="nav-profile-name">${loggedInUser.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../../logout">
+                        <a class="dropdown-item" href="../../../../logout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
@@ -109,7 +109,7 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder.jsp">我的订单</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder">我的订单</a></li>
                             <li class="nav-item"> <a class="nav-link" href="${path}pages/user/personInfo.jsp">个人信息</a></li>
                         </ul>
                     </div>
@@ -192,7 +192,8 @@
                                                 <td>${order.price}</td>
                                                 <td>${order.renting_status}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#exampleModal${order.order_id}">
+                                                    <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#exampleModal${order.order_id}"
+                                                        ${order.renting_status eq "N" ? "" : "disabled"}>
                                                         租赁
                                                     </button>
                                                 </td>
@@ -205,25 +206,25 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">修改订单 - ${order.order_id}</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">提交订单</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="../../../../page/view/pages/admin/ModifyOrderSubmit" method="post" id="modifyOrderForm${order.order_id}">
+                                                        <form action="../../../../page/view/pages/user/rentHouse" method="post" id="modifyOrderForm${order.order_id}">
                                                             <div class="form-group">
                                                                 <label for="houseIdInput">房屋编号</label>
-                                                                <input type="text" class="form-control" id="houseIdInput" name="houseId" value="${order.house_id}" required>
-                                                                <small class="form-text text-muted">请输入新的房屋编号，必填项</small>
+                                                                <input type="text" class="form-control" id="houseIdInput" name="houseId" value="${order.house_id}" required readonly>
+                                                                <small class="form-text text-muted">请核对房屋编号</small>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="priceInput">租价</label>
-                                                                <input type="number" class="form-control" id="priceInput" name="price" value="${order.price}" required>
-                                                                <small class="form-text text-muted">请输入租金，必填项</small>
+                                                                <input type="number" class="form-control" id="priceInput" name="price" value="${order.price}" required readonly>
+                                                                <small class="form-text text-muted">请核对租金</small>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="startInput">订单开始时间</label>
+                                                                <label for="startInput">订单生效起始时间</label>
                                                                 <input type="date" class="form-control" id="startInput" name="startTime" value="${order.startint_time}" required>
                                                                 <small class="form-text text-muted">请输入订单开始时间，必填项</small>
                                                             </div>
@@ -231,18 +232,11 @@
                                                                 <label for="endInput">订单结束时间</label>
                                                                 <input type="date" class="form-control" id="endInput" name="endTime" value="${order.end_time}" required>
                                                                 <small class="form-text text-muted">请输入订单结束时间，必填项</small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="statusInput">租赁状态</label>
-                                                                <select class="form-control" id="statusInput" name="status" required>
-                                                                    <option value="Y" >Y</option>
-                                                                    <option value="N" >N</option>
-                                                                </select>
-                                                                <small class="form-text text-muted">请选择租赁状态，必填项</small>
+                                                                <strong class="form-text text-muted">订单生效期间不足一月的按整月计费</strong>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                                                                <button type="submit" class="btn btn-primary">保存修改</button>
+                                                                <button type="submit" class="btn btn-primary">提交修改</button>
                                                             </div>
                                                             <input type="hidden" name="orderId" value="${order.order_id}">
                                                             <input type="hidden" name="rowKey" value="${order.row}">

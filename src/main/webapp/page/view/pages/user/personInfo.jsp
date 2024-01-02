@@ -17,7 +17,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>个人信息</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
@@ -60,10 +60,14 @@
                         <span class="nav-profile-name">${loggedInUser.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../logout">
+                        <a class="dropdown-item" href="../../../../logout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
+                        <button type="button" class="dropdown-item" disabled="true">
+                            <i class="mdi mdi-logout text-primary"></i>
+                            账户余额：${loggedInUser.money}
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -84,7 +88,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/user/rentManager.jsp">
+                    <a class="nav-link" href="${path}pages/user/rentManagerList">
                         <i class="mdi mdi-view-headline menu-icon"></i>
                         <span class="menu-title">租赁</span>
                     </a>
@@ -97,7 +101,7 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder.jsp">我的订单</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder">我的订单</a></li>
                             <li class="nav-item"> <a class="nav-link" href="${path}pages/user/personInfo.jsp">个人信息</a></li>
                         </ul>
                     </div>
@@ -148,6 +152,33 @@
                 </div>
             </div>
 
+        </div>
+        <div class="modal fade" id="rechargeMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelCharge" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" >钱包充值</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../../../../page/view/pages/user/charge" method="post" id="modifyChargeForm">
+
+                            <div class="form-group">
+                                <label for="recharge">充值金额</label>
+                                <input type="number" class="form-control" id="recharge" name="charge" required>
+                                <small class="form-text text-muted">输入充值金额</small>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <button type="submit" class="btn btn-primary">充值</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -28,6 +28,20 @@ public class GetOrderService {
 
         return foundOrder;
     }
+
+    public Order queryOrderByHouseId(List<Order> allOrders, String house_id){
+        Order foundOrder = new Order();
+
+        for (Order order : allOrders) {
+            if (order.getHouse_id().equals(house_id)) {
+                foundOrder = order;
+                System.out.println(foundOrder.getHouse_id());
+                break;
+            }
+        }
+
+        return foundOrder;
+    }
     public List<Order> queryHouse(List<Order> allOrders, String house_id, String price_min, String price_max, String status) {
         List<Order> queryHouse = new ArrayList<>();
 
@@ -63,6 +77,21 @@ public class GetOrderService {
         }
 
         return queryHouse;
+    }
+    public List<Order> queryMyOrder(List<String> OrderId){
+        List<Order> orders = order.getOrder();
+        List<Order> list = new ArrayList<>();
+        for (String id : OrderId) {
+            for (Order order : orders) {
+                if (order.getOrder_id().contains(id)) {
+                    list.add(order);
+
+                    break;
+                }
+            }
+        }
+        System.out.println(list);
+        return list;
     }
 
 }

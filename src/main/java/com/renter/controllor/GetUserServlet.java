@@ -14,7 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/page/view/pages/admin/userList")
+
+@WebServlet("/page/view/pages/admin/allUser")
 public class GetUserServlet extends HttpServlet {
     private final GetUserService getUserService = new GetUserService();
     @Override
@@ -30,7 +31,7 @@ public class GetUserServlet extends HttpServlet {
             pageSize = Integer.parseInt(pageSizeParam);
         }
 
-        // 获取所有订单
+        // 获取所有的user对象
         List<User> allUsers = getUserService.getUser();
 
         // 计算总共需要分成多少页
@@ -49,7 +50,7 @@ public class GetUserServlet extends HttpServlet {
         req.setAttribute("currentPage", currentPage);
         req.setAttribute("pageSize", pageSize);
         req.setAttribute("currentUsers", currentUsers);
-        req.getRequestDispatcher("/page/view/pages/admin/userManager.jsp").forward(req, resp);
+        req.getRequestDispatcher("/page/view/pages/admin/userMan.jsp").forward(req, resp);
     }
 
 

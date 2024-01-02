@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.renter.data.Admin" %>
 <%@ page import="com.renter.data.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -6,21 +8,23 @@
     request.setAttribute("path", basePath);
 %>
 <%
-    User loggedInAdmin = (User) session.getAttribute("loggedInUser");
-    if (loggedInAdmin == null) {
+    User loggedInUser = (User) session.getAttribute("loggedInUser");
+    if (loggedInUser == null) {
         response.sendRedirect("/page/user/login.jsp");
     }
 %>
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>我的订单</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="${path}vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -45,11 +49,11 @@
                 <li class="nav-item nav-search d-none d-lg-block w-100">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
-                </span>
+                            <span class="input-group-text" id="search">
+                               <i class="mdi mdi-magnify"></i>
+                            </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+                        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search" id="searchBox">
                     </div>
                 </li>
             </ul>
@@ -60,10 +64,14 @@
                         <span class="nav-profile-name">${loggedInUser.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../logout">
+                        <a class="dropdown-item" href="../../../../logout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
+                        <button type="button" class="dropdown-item" disabled="true">
+                            <i class="mdi mdi-logout text-primary"></i>
+                            账户余额：${loggedInUser.money}
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -84,7 +92,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/user/rentManager.jsp">
+                    <a class="nav-link" href="${path}pages/user/rentManagerList">
                         <i class="mdi mdi-view-headline menu-icon"></i>
                         <span class="menu-title">租赁</span>
                     </a>
@@ -97,16 +105,136 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder.jsp">我的订单</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder">我的订单</a></li>
                             <li class="nav-item"> <a class="nav-link" href="${path}pages/user/personInfo.jsp">个人信息</a></li>
                         </ul>
                     </div>
                 </li>
             </ul>
         </nav>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12 stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-title">Recent Purchases</p>
+                                <div class="table-responsive">
+                                    <table id="recent-purchases-listing" class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>订单编号</th>
+                                            <th>房屋编号</th>
+                                            <th>租价</th>
+                                            <th>订单开始时间</th>
+                                            <th>订单结束时间</th>
+                                            <th>租赁状态</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${currentOrders}" var="order">
+                                            <tr>
+                                                <td>${order.order_id}</td>
+                                                <td>${order.house_id}</td>
+                                                <td>${order.price}</td>
+                                                <td>${order.startint_time}</td>
+                                                <td>${order.end_time}</td>
+                                                <td>${order.renting_status}</td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                            <a class="page-link" href="?currentPage=${currentPage - 1}&pageSize=${pageSize}">上一页</a>
+                                        </li>
+                                        <li class="page-item ${currentPage == 1 ? 'active' : ''}">
+                                            <a class="page-link" href="?currentPage=1&pageSize=${pageSize}">1</a>
+                                        </li>
+                                        <c:choose>
+                                            <c:when test="${currentPage <= fixedPageCount + 2}">
+                                                <!-- 遍历显示前固定数量的页码链接 -->
+                                                <c:forEach begin="2" end="${fixedPageCount + 1}" var="i">
+                                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                                        <a class="page-link" href="?currentPage=${i}&pageSize=${pageSize}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                                <li class="page-item disabled"><a class="page-link">...</a></li>
+                                            </c:when>
+                                            <c:when test="${currentPage > totalPage - fixedPageCount - 1}">
+                                                <!-- 遍历显示后固定数量的页码链接 -->
+                                                <li class="page-item disabled"><a class="page-link">...</a></li>
+                                                <c:forEach begin="${totalPage - fixedPageCount}" end="${totalPage - 1}" var="i">
+                                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                                        <a class="page-link" href="?currentPage=${i}&pageSize=${pageSize}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <!-- 显示当前页码前后固定数量的页码链接 -->
+                                                <li class="page-item disabled"><a class="page-link">...</a></li>
+                                                <c:forEach begin="${currentPage - fixedPageCount}" end="${currentPage + fixedPageCount}" var="i">
+                                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                                        <a class="page-link" href="?currentPage=${i}&pageSize=${pageSize}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                                <li class="page-item disabled"><a class="page-link">...</a></li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <li class="page-item ${currentPage == totalPage ? 'active' : ''}">
+                                            <a class="page-link" href="?currentPage=${totalPage}&pageSize=${pageSize}">${totalPage}</a>
+                                        </li>
+                                        <li class="page-item ${currentPage == totalPage ? 'disabled' : ''}">
+                                            <a class="page-link" href="?currentPage=${currentPage + 1}&pageSize=${pageSize}">下一页</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <div class="row justify-content-center">
+                                    <form class="form-inline" method="get" action="?">
+                                        <div class="form-group mx-sm-3">
+                                            <input type="hidden" name="pageSize" value="${pageSize}" />
+                                            <input type="number" class="form-control" name="currentPage" placeholder="输入页码" min="1" max="${totalPage}">
+                                        </div>
+                                        <button type="submit" class="btn btn-inverse-primary btn-fw">跳转</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rechargeMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelCharge" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >钱包充值</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="../../../../page/view/pages/user/charge" method="post" id="modifyChargeForm">
+
+                        <div class="form-group">
+                            <label for="recharge">充值金额</label>
+                            <input type="number" class="form-control" id="recharge" name="charge" required>
+                            <small class="form-text text-muted">输入充值金额</small>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">充值</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <!-- partial -->
 
 <!-- container-scroller -->
@@ -129,9 +257,13 @@
 <script src="${path}js/data-table.js"></script>
 <script src="${path}js/jquery.dataTables.js"></script>
 <script src="${path}js/dataTables.bootstrap4.js"></script>
+<script src="${path}js/jquery%20-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
 <!-- End custom js for this page-->
 
 <script src="${path}js/jquery.cookie.js" type="text/javascript"></script>
+
+
 </body>
 
 </html>

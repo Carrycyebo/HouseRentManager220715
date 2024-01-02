@@ -19,7 +19,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>订单管理</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
@@ -63,9 +63,13 @@
                         <span class="nav-profile-name">${loggedInAdmin.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../../logout">
+                        <a class="dropdown-item" href="../../../../adminlogout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
+                        </a>
+                        <a class="dropdown-item" href="${path}pages/admin/register.jsp">
+                            <i class=" mdi mdi-account-multiple-plus text-primary"></i>
+                            Add New Admin
                         </a>
                     </div>
                 </li>
@@ -99,7 +103,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/admin/userManager.jsp">
+                    <a class="nav-link" href="${path}pages/admin/allUser">
                         <i class="mdi mdi-account menu-icon"></i>
                         <span class="menu-title">用户管理</span>
                     </a>

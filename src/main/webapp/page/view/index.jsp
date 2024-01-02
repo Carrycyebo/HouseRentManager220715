@@ -17,7 +17,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>首页</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
@@ -60,10 +60,14 @@
                         <span class="nav-profile-name">${loggedInUser.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../logout">
+                        <a class="dropdown-item" href="../../../logout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
+                        <button type="button" class="dropdown-item" disabled="true">
+                            <i class="mdi mdi-logout text-primary"></i>
+                            账户余额：${loggedInUser.money}
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -84,7 +88,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/user/rentManager.jsp">
+                    <a class="nav-link" href="${path}pages/user/rentManagerList">
                         <i class="mdi mdi-view-headline menu-icon"></i>
                         <span class="menu-title">租赁</span>
                     </a>
@@ -97,7 +101,7 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder.jsp">我的订单</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${path}pages/user/myOrder">我的订单</a></li>
                             <li class="nav-item"> <a class="nav-link" href="${path}pages/user/personInfo.jsp">个人信息</a></li>
                         </ul>
                     </div>
@@ -128,7 +132,7 @@
                         <div class="table-responsive">
                             <div id="recent-purchases-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="recent-purchases-listing" class="table dataTable no-footer" role="grid">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 197.5px;">房屋编号</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Status report: activate to sort column ascending" style="width: 253.104px;">所在小区</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 181.177px;">已租赁</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 92.125px;">租金</th></tr>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 197.5px;">房屋编号</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Status report: activate to sort column ascending" style="width: 253.104px;">所在小区</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 181.177px;">租赁状态</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 92.125px;">租金</th></tr>
                                 </thead>
                                 <tbody>
                                     <tr role="row" class="odd">

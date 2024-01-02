@@ -17,7 +17,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
@@ -60,7 +60,7 @@
                         <span class="nav-profile-name">${loggedInAdmin.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../logout">
+                        <a class="dropdown-item" href="../../../../adminlogout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
@@ -100,89 +100,89 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/admin/userList">
+                    <a class="nav-link" href="${path}pages/admin/allUser">
                         <i class="mdi mdi-account menu-icon"></i>
                         <span class="menu-title">用户管理</span>
                     </a>
                 </li>
             </ul>
         </nav>
-        <div class="h-75 col-lg-6 grid-margin stretch-card custom-parent">
+        <div class="h-150 col-lg-10 col-auto grid-margin custom-parent">
             <div class="shadow p-3 mb-5 bg-white rounded">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">成员信息</h4>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>成员</th>
-                                <th>中文名</th>
-                                <th>英文名</th>
-                                <th>负责模块</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="../view/images/ZYB.jpg" alt="...">
-                                </td>
-                                <td>赵艺博</td>
-                                <td>Hunter</td>
-                                <td>123465</td>
-                                <td><label class="badge badge-danger">Pending</label></td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="../view/images/me.jpg" alt="...">
-                                </td>
-                                <td>陈子豪</td>
-                                <td>Luka</td>
-                                <td>123123</td>
-                                <td><label class="badge badge-warning">In progress</label></td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="../view/images/WJY.jpg" alt="...">
-                                </td>
-                                <td>王俊尧</td>
-                                <td>123456</td>
-                                <td>132456</td>
-                                <td><label class="badge badge-info">Fixed</label></td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="../view/images/LXM.jpg" alt="...">
-                                </td>
-                                <td>李晓明</td>
-                                <td>5213214</td>
-                                <td>2131</td>
-                                <td><label class="badge badge-success">Completed</label></td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="../view/images/LZX.jpg" alt="...">
-                                </td>
-                                <td>陆智翔</td>
-                                <td>53275535</td>
-                                <td>20 May 2017</td>
-                                <td><label class="badge badge-warning">In progress</label></td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="../view/images/WCY.jpg" alt="...">
-                                </td>
-                                <td>王晨伊</td>
-                                <td>53275535</td>
-                                <td>20 May 2017</td>
-                                <td><label class="badge badge-warning">In progress</label></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">成员信息</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>成员</th>
+                                    <th>中文名</th>
+                                    <th>英文名</th>
+                                    <th>负责模块</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="../view/images/ZYB.jpg" alt="...">
+                                    </td>
+                                    <td>赵艺博</td>
+                                    <td>Hunter</td>
+                                    <td>Dao统筹 + 框架</td>
+                                    <td><label class="badge badge-danger">Pending</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="../view/images/me.jpg" alt="...">
+                                    </td>
+                                    <td>陈子豪</td>
+                                    <td>Luka</td>
+                                    <td>美化 前端</td>
+                                    <td><label class="badge badge-warning">In progress</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="../view/images/WJY.jpg" alt="...">
+                                    </td>
+                                    <td>王俊尧</td>
+                                    <td>Junius</td>
+                                    <td>Servlet ppt制作</td>
+                                    <td><label class="badge badge-info">Fixed</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="../view/images/LXM.jpg" alt="...">
+                                    </td>
+                                    <td>李晓明</td>
+                                    <td>Coke</td>
+                                    <td>Mapreduce可视化</td>
+                                    <td><label class="badge badge-success">Completed</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="../view/images/LZX.jpg" alt="...">
+                                    </td>
+                                    <td>陆智翔</td>
+                                    <td>Marino</td>
+                                    <td>Service调试</td>
+                                    <td><label class="badge badge-warning">In progress</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="../view/images/WCY.jpg" alt="...">
+                                    </td>
+                                    <td>王晨伊</td>
+                                    <td>Swaggyp</td>
+                                    <td>HBase数据表操作维护</td>
+                                    <td><label class="badge badge-warning">In progress</label></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>

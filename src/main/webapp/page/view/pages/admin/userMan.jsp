@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.renter.data.Admin" %>
-<%@ page import="com.renter.data.Order" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.renter.data.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -21,7 +20,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>用户管理</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="${path}vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${path}vendors/base/vendor.bundle.base.css">
@@ -65,7 +64,7 @@
                         <span class="nav-profile-name">${loggedInAdmin.name}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="../../../logout">
+                        <a class="dropdown-item" href="../../../adminlogout">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
@@ -101,7 +100,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${path}pages/admin/userList">
+                    <a class="nav-link" href="${path}pages/admin/allUser">
                         <i class="mdi mdi-account menu-icon"></i>
                         <span class="menu-title">用户管理</span>
                     </a>
@@ -109,44 +108,93 @@
             </ul>
         </nav>
         <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12 stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-title">Recent Purchases</p>
 
+                                <div>
+                                    <button type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#updateUser">
+                                        修改用户信息
+                                    </button>
+                                    <button type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#deleteUser">
+                                        删除用户
+                                    </button>
+                                </div>
+                                <div class="modal fade" id="updateUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelQuery" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" >修改用户信息</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="../../../../page/view/pages/admin/updateUser" method="post" >
+                                                    <div class="form-group">
+                                                        <label for="email">Email</label>
+                                                        <input type="text" class="form-control" id="email" name="email" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="username">UserName</label>
+                                                        <input type="text" class="form-control" id="username" name="username" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="passwd">PassWord</label>
+                                                        <input type="text" class="form-control" id="passwd" name="passwd" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="phone">Phone</label>
+                                                        <input type="text" class="form-control" id="phone" name="phone" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="phone">Money</label>
+                                                        <input type="text" class="form-control" id="money" name="money" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="phone">OrderIds</label>
+                                                        <input type="text" class="form-control" id="orderIds" name="orderIds" required>
+                                                        <strong class="form-text text-muted">订单编号，用','隔开</strong>
+                                                    </div>
 
-            <div class="row">
-                <div class="col-md-12 stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-title">Recent Purchases</p>
-
-                            <%--<div>
-                                <button type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#search_user">
-                                    查询用户
-                                </button>
-                            </div>
-                            <div class="modal fade" id="search_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelQuery" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="">查询用户</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="../../../../page/view/pages/admin/query" method="post" id="modifyOrderForm">
-                                                <div class="form-group">
-                                                    <label for="email">邮箱</label>
-                                                    <input type="text" class="form-control" id="email" name="searchQuery" required>
-                                                    <small class="form-text text-muted">输入要查询的用户的邮箱</small>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                                                    <button type="submit" class="btn btn-primary">查询</button>
-                                                </div>
-                                            </form>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                                        <button type="submit" class="btn btn-primary">提交修改</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>--%>
+                                <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelQuery" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" >查询订单</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="../../../../page/view/pages/admin/delete" method="post" id="modifyDeleteForm">
+                                                    <div class="form-group">
+                                                        <label for="delemail">邮箱号</label>
+                                                        <input type="text" class="form-control" id="delemail" name="delemail" required>
+                                                        <small class="form-text text-muted">输入要删除的邮箱号</small>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                                        <button type="submit" class="btn btn-primary" onclick="confirmDelete()">删除</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="table-responsive">
                                 <table id="recent-purchases-listing" class="table">
@@ -156,9 +204,7 @@
                                         <th>用户名</th>
                                         <th>密码</th>
                                         <th>电话号</th>
-                                        <th>钱包</th>
-                                        <%--<th>他的订单</th>--%>
-                                        <th>修改用户信息</th>
+                                        <th>账户余额</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -169,63 +215,11 @@
                                             <td>${user.passwd}</td>
                                             <td>${user.phone}</td>
                                             <td>${user.money}</td>
-                                            <%--<td>
-                                                <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#quaryOrder">
-                                                    查看订单
-                                                </button>
-                                            </td>--%>
-                                            <td>
-                                                <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#updateUser${user.email}">
-                                                    修改用户信息
-                                                </button>
-                                            </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                                <c:forEach items="${currentUsers}" var="user">
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="updateUser${user.email}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="updateModalLabel">修改用户信息 - ${user.name}</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="" method="post">
-                                                        <%--<div class="form-group">
-                                                            <label for="emailInput">邮箱</label>
-                                                            <input type="email" class="form-control" id="emailInput" name="email" required>
-                                                            <small class="form-text text-muted">请输入新的邮箱，必填项</small>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="nameInput">用户名</label>
-                                                            <input type="text" class="form-control" id="nameInput" name="name" required>
-                                                            <small class="form-text text-muted">请输入新的用户名，必填项</small>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="passwordInput">密码</label>
-                                                            <input type="password" class="form-control" id="passwordInput" name="password" required>
-                                                            <small class="form-text text-muted">请输入新的密码，必填项</small>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="phoneInput">电话号</label>
-                                                            <input type="text" class="form-control" id="phoneInput" name="phone" required>
-                                                            <small class="form-text text-muted">请输入新的电话号，必填项</small>
-                                                        </div>--%>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                                                            <button type="submit" class="btn btn-primary">保存修改</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+
                             </div>
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
@@ -289,6 +283,9 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- partial -->
 
 <!-- container-scroller -->
@@ -316,6 +313,16 @@
 <!-- End custom js for this page-->
 
 <script src="${path}js/jquery.cookie.js" type="text/javascript"></script>
+<script>
+    function confirmDelete() {
+        // 弹出确认删除的提示框
+        if (confirm("确定要删除吗？")) {
+            // 如果用户点击确认，则提交表单
+            document.getElementById("modifyDeleteForm").submit();
+        }
+    }
+</script>
+
 
 </body>
 

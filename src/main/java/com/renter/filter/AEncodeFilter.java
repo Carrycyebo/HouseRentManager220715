@@ -14,7 +14,6 @@ public class AEncodeFilter implements Filter {
         servletResponse.setCharacterEncoding("UTF-8");
         //设置浏览器编码格式
         servletResponse.setContentType("text/html;charset=UTF-8");
-
         //放行
         filterChain.doFilter(servletRequest,servletResponse);
     }

@@ -10,10 +10,15 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
 
-        // 检查当前用户是否是管理员
+        session.invalidate();
+        resp.sendRedirect("/page/user/login.jsp");
+
+
+
+        /*// 检查当前用户是否是管理员
         if (session.getAttribute("loggedInAdmin") != null) {
             // 管理员登出逻辑
             session.invalidate(); // 使会话失效
@@ -25,7 +30,7 @@ public class LogoutServlet extends HttpServlet {
         } else {
             // 如果没有用户或管理员登录，则默认重定向到用户登录页面
             response.sendRedirect("/page/user/login.jsp");
-        }
+        }*/
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -40,6 +40,10 @@ public class ModifyOrderServlet extends HttpServlet {
         update.setStartint_time(formattedStartDate);
         update.setEnd_time(formattedEndDate);
         update.setRenting_status(request.getParameter("status"));
+
+       /* System.out.println(update.getHouse_id());
+        System.out.println(update.getOrder_id());*/
+
         // 在这里完成自定义验证逻辑，如果有错误则返回响应
         //System.out.println(update.getRow());
         // 修改订单数据

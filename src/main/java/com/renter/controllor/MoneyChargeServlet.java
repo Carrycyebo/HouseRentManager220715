@@ -18,7 +18,7 @@ public class MoneyChargeServlet extends HttpServlet {
     private final LoginService loginService = new LoginService();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User charge = new User();
+        User charge;
 
         String charge_money = req.getParameter("charge");
         HttpSession session = req.getSession();
@@ -32,7 +32,7 @@ public class MoneyChargeServlet extends HttpServlet {
         if (status) {
             User loggedInUser = loginService.getUser(charge.getEmail());
             session.setAttribute("loggedInUser", loggedInUser);
-            resp.sendRedirect("/page/view/pages/status/scUpdateUser.jsp");
+            resp.sendRedirect("/page/view/pages/status/sucCharge.jsp");
         } else {
             // 设置响应头的 Content-Type 值
             resp.setContentType("text/plain;charset=UTF-8");
