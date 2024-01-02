@@ -104,6 +104,82 @@
                 </li>
             </ul>
         </nav>
+        <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin">
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <div class="d-flex align-items-end flex-wrap">
+                            <div class="mr-md-3 mr-xl-5">
+                                <h1>欢迎回来！</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-success" role="alert">
+                最新公告：当前房屋房源较少，抓紧机会先到先得！！！
+            </div>
+            <div class="row">
+            <div class="col-md-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">推荐房屋</p>
+                        <div class="table-responsive">
+                            <div id="recent-purchases-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="recent-purchases-listing" class="table dataTable no-footer" role="grid">
+                                <thead>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 197.5px;">房屋编号</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Status report: activate to sort column ascending" style="width: 253.104px;">所在小区</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 181.177px;">已租赁</th><th class="sorting" tabindex="0" aria-controls="recent-purchases-listing" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 92.125px;">租金</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd">
+                                    <td class="sorting_1">9372-45-0938</td>
+                                    <td>5</td>
+                                    <td>N</td>
+                                    <td>￥882/月</td>
+                                </tr><tr role="row" class="even">
+                                    <td class="sorting_1">7128-22-0216</td>
+                                    <td>3</td>
+                                    <td>N</td>
+                                    <td>￥2152/月</td>
+                                </tr><tr role="row" class="odd">
+                                    <td class="sorting_1">7090-01-0923</td>
+                                    <td>1</td>
+                                    <td>N</td>
+                                    <td>￥2331/月</td>
+                                </tr><tr role="row" class="even">
+                                    <td class="sorting_1">3869-02-2918</td>
+                                    <td>1</td>
+                                    <td>N</td>
+                                    <td>￥2452/月</td>
+                                </tr><tr role="row" class="odd">
+                                    <td class="sorting_1">7995-26-4342</td>
+                                    <td>3</td>
+                                    <td>N</td>
+                                    <td>￥2098/月</td>
+                                </tr><tr role="row" class="even">
+                                    <td class="sorting_1">5033-11-0777</td>
+                                    <td>2</td>
+                                    <td>N</td>
+                                    <td>￥2375/月</td>
+                                </tr><tr role="row" class="odd">
+                                    <td class="sorting_1">2877-36-1727</td>
+                                    <td>4</td>
+                                    <td>N</td>
+                                    <td>￥1980/月</td>
+                                </tr><tr role="row" class="even">
+                                    <td class="sorting_1">2697-23-2180</td>
+                                    <td>3</td>
+                                    <td>N</td>
+                                    <td>￥746/月</td>
+                                </tr></tbody>
+                            </table></div></div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
 
