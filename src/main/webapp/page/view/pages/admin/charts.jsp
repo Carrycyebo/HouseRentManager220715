@@ -121,10 +121,15 @@
     var option = null ;
     option = {
         title: {
-            text: '123'
+            text: '各小区房屋租赁统计图',
+            bottom: 0,
+            left: 'center',
+            textStyle: {
+                fontSize: 20
+            }
         },
         xAxis: {
-            data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49']
+            data: ['1号小区', '2号小区', '3号小区', '4号小区', '5号小区']
         },
         yAxis: {},
         series: [{
@@ -134,13 +139,13 @@
     };
     show1.setOption(option);
     $.ajax({
-        url: "../../../../user/show",
+        url: "../../../../user/show?id=1",
         type: "post",
         dataType:"json",
-        success:function (list) {
+        success:function (list1) {
             show1.setOption(option={
                 series:[{
-                    data : list,
+                    data : list1,
                 }]
             });
         }
@@ -154,11 +159,11 @@
     option = {
         color: ['#1F78B4','#33A02C', '#FB9A99', '#E31A1C'],
         title: {
-            text: '可租赁房屋价格统计图',
-            bottom: 10,
+            text: '各价位已租赁房屋统计图',
+            bottom: 90,
             left: 'center',
             textStyle: {
-                fontSize: 16
+                fontSize: 20
             }
         },
         series: [{
@@ -167,18 +172,18 @@
             center: ['50%', '45%'],
             label: {
                 fontSize: 16,
-                formatter: '{b} {d}%',
+                formatter: '{b}' + '\n' + '{d}%',
             },
             data: [],
         }]
     };
     show2.setOption(option);
     $.ajax({
-        url: "../../../../user/show",
+        url: "../../../../user/show?id=2",
         type: "post",
         dataType:"json",
         success:function (list2) {
-            show1.setOption(option={
+            show2.setOption(option={
                 series:[{
                     data : list2,
                 }]

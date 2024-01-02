@@ -21,7 +21,6 @@ public class LoginServlet extends HttpServlet {
         System.out.println(name+password);
         int status = loginService.queryAdmin(name,password);
         if(status == 0){
-
             Admin loggedInAdmin = new Admin(name, password);
             HttpSession session = req.getSession();
             session.setAttribute("loggedInAdmin", loggedInAdmin);

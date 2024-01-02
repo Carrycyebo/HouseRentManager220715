@@ -8,6 +8,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 import com.renter.util.HbaseUtil;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class LoginDao {
     //管理员登录
@@ -103,6 +104,13 @@ public class LoginDao {
                         loggedUser.setPasswd(Bytes.toString(value));
                     } else if (column.equals("info:uname")) {
                         loggedUser.setName(Bytes.toString(value));
+                    } else if (column.equals("info:money")) {
+                        loggedUser.setMoney(Bytes.toString(value));
+                    } else if (column.equals("info:phone")) {
+                        loggedUser.setPhone(Bytes.toString(value));
+                    } else if (column.equals("info:orderIds")) {
+                        String orderIdsStr = Bytes.toString(value);
+                        loggedUser.setOrderIds(Arrays.asList(orderIdsStr.split(",")));
                     }
                 }
                 return loggedUser;

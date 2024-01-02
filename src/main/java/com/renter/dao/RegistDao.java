@@ -27,7 +27,9 @@ public class RegistDao {
             Put put2 = new Put(Bytes.toBytes(email));
             put2.addColumn(Bytes.toBytes("info"),Bytes.toBytes("uname"),Bytes.toBytes(uname));
             put2.addColumn(Bytes.toBytes("info"),Bytes.toBytes("passwd"),Bytes.toBytes(passwd));
+            put2.addColumn(Bytes.toBytes("info"),Bytes.toBytes("phone"),Bytes.toBytes(""));
             put2.addColumn(Bytes.toBytes("info"),Bytes.toBytes("money"),Bytes.toBytes("0"));
+            put2.addColumn(Bytes.toBytes("info"),Bytes.toBytes("orderIds"),Bytes.toBytes("null"));
             table.put(put2);
         }catch (Exception e){
             e.printStackTrace();

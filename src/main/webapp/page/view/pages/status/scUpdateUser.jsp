@@ -31,7 +31,7 @@
     <p>Aww yeah, when you read this message. You hava successfully Updated the Order.</p>
     <hr>
     <p class="mb-0"></p>
-    <a href="<c:url value="/page/view/pages/admin/order"/>" class="alert-link">点击这里返回</a>
+    <a href="<c:url value="/page/view/pages/user/personInfo.jsp"/>" class="alert-link">点击这里返回</a>
 
 </div>
 

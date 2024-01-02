@@ -17,7 +17,7 @@ public class ShowData {
     //查所有result2表
     public List<Data> selectData1(){
         List<Data> list1 = new ArrayList<Data>();
-        Table result1 = HbaseUtil.getTable("1");
+        Table result1 = HbaseUtil.getTable("HouseManager:rent_count1");
         try {
                 ResultScanner scanner = result1.getScanner(new Scan());
                 for(Result result : scanner){
@@ -39,15 +39,15 @@ public class ShowData {
 
     public List<Data> selectData2(){
         List<Data> list2 = new ArrayList<Data>();
-        Table result1 = HbaseUtil.getTable("2");
+        Table result1 = HbaseUtil.getTable("HouseManager:rent_count2");
         try {
             ResultScanner scanner = result1.getScanner(new Scan());
             for(Result result : scanner){
                 while (result.advance()){
                     Cell cell = result.current();
-                    //小区
+
                     String name = Bytes.toString(CellUtil.cloneRow(cell));
-                    //每个小区房屋个数
+
                     double value = Double.parseDouble(Bytes.toString(CellUtil.cloneValue(cell)));
                     Data data =  new Data(name, value);
                     list2.add(data);
