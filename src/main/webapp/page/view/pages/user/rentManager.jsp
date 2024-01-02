@@ -68,14 +68,14 @@
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
                         </a>
-                        <a class="dropdown-item" href="../../../logout" disabled="true">
+                        <button type="button" class="dropdown-item" disabled="true">
                             <i class="mdi mdi-logout text-primary"></i>
                             账户余额：${loggedInUser.money}
-                        </a>
-                        <a class="dropdown-item" href="../../../logout">
+                        </button>
+                        <button type="button" class="dropdown-item" data-toggle="modal" data-target="#rechargeMoney">
                             <i class="mdi mdi-logout text-primary"></i>
                             充值
-                        </a>
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -133,7 +133,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="">查询订单</h5>
+                                                <h5 class="modal-title" >查询订单</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -314,8 +314,35 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="rechargeMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelCharge" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" >钱包充值</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../../../../page/view/pages/user/charge" method="post" id="modifyChargeForm">
+
+                            <div class="form-group">
+                                <label for="recharge">充值金额</label>
+                                <input type="number" class="form-control" id="recharge" name="charge" required>
+                                <small class="form-text text-muted">输入充值金额</small>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <button type="submit" class="btn btn-primary">充值</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
 <!-- partial -->
 
 <!-- container-scroller -->

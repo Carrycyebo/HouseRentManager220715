@@ -11,4 +11,8 @@ public class UpdateUserService {
     public boolean doUpdateUser(User update){
         return updateUser.updateUser(update);
     }
+
+    public boolean doCharge(User charge){
+        return updateUser.reCharge(charge);
+    }
 }

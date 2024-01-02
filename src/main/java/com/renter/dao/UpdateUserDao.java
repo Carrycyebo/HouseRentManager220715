@@ -24,4 +24,18 @@ public class UpdateUserDao {
         }
         return true;
     }
+
+
+    public boolean reCharge(User charge){
+        Table table = HbaseUtil.getTable("HouseManager:user");
+        try {
+            Put put = new Put(Bytes.toBytes(charge.getEmail()));
+            put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("money"),Bytes.toBytes(charge.getMoney()));
+
+            table.put(put);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
 }
