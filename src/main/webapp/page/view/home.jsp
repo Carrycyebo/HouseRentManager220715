@@ -130,7 +130,6 @@
                                     <td>赵艺博</td>
                                     <td>Hunter</td>
                                     <td>Dao统筹 + 框架</td>
-                                    <td><label class="badge badge-danger">Pending</label></td>
                                 </tr>
                                 <tr>
                                     <td class="py-1">
@@ -139,7 +138,6 @@
                                     <td>陈子豪</td>
                                     <td>Luka</td>
                                     <td>美化 前端</td>
-                                    <td><label class="badge badge-warning">In progress</label></td>
                                 </tr>
                                 <tr>
                                     <td class="py-1">
@@ -148,7 +146,6 @@
                                     <td>王俊尧</td>
                                     <td>Junius</td>
                                     <td>Servlet ppt制作</td>
-                                    <td><label class="badge badge-info">Fixed</label></td>
                                 </tr>
                                 <tr>
                                     <td class="py-1">
@@ -157,7 +154,6 @@
                                     <td>李晓明</td>
                                     <td>Coke</td>
                                     <td>Mapreduce可视化</td>
-                                    <td><label class="badge badge-success">Completed</label></td>
                                 </tr>
                                 <tr>
                                     <td class="py-1">
@@ -166,7 +162,6 @@
                                     <td>陆智翔</td>
                                     <td>Marino</td>
                                     <td>Service调试</td>
-                                    <td><label class="badge badge-warning">In progress</label></td>
                                 </tr>
                                 <tr>
                                     <td class="py-1">
@@ -175,7 +170,6 @@
                                     <td>王晨伊</td>
                                     <td>Swaggyp</td>
                                     <td>HBase数据表操作维护</td>
-                                    <td><label class="badge badge-warning">In progress</label></td>
                                 </tr>
                                 </tbody>
                             </table>
